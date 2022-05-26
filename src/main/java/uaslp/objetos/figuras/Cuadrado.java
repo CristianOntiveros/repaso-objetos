@@ -14,7 +14,10 @@ public class Cuadrado extends Figura{
         this.lado = lado;
     }
 
-    public double getArea(){
+    public double getArea() throws LadoNoProvistoException{
+        if(lado<1){
+            throw new LadoNoProvistoException();
+        }
         return (lado*lado);
     }
 

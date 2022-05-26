@@ -63,7 +63,7 @@ public class Exercise2 {
     }
 
     @Test
-    public void testListaDeFiguras(){
+    public void testListaDeFiguras() throws NumeroInvalidoDeLados {
         // Given:
         List<Figura> figuras = new ArrayList<>();
 
@@ -96,5 +96,4 @@ public class Exercise2 {
         Assertions.assertTrue(figuras.get(3) instanceof  DrawableItem);
         Assertions.assertTrue(figuras.get(4) instanceof  DrawableItem);
     }
-
 }
