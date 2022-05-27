@@ -9,7 +9,8 @@ import java.lang.reflect.Modifier;
 import java.time.LocalDate;
 import java.time.Month;
 
-public class Exercise4 {
+public class
+Exercise4 {
 
     @Test
     public void testBuilder() {
