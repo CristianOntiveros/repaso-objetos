@@ -1,6 +1,7 @@
 package uaslp.objetos.escuela;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -25,4 +26,50 @@ public class Exercise6 {
         assertThat(Dependencia2.class).isInterface();
         assertThat(Dependencia3.class).isInterface();
     }
+
+    @Test
+    public void validaAlgoritmoX(){
+        Dependencia1 dependencia1 = Mockito.mock(Dependencia1.class);
+        Dependencia2 dependencia2 = Mockito.mock(Dependencia2.class);
+        Dependencia3 dependencia3 = Mockito.mock(Dependencia3.class);
+
+        AlgoritmoX algoritmoX=new AlgoritmoX(dependencia1,dependencia2,dependencia3);
+
+        algoritmoX.algoritmoACubrir(5,5, "prueba");
+
+        Mockito.verify(dependencia1).save("prueba");
+        Mockito.verify(dependencia3).recover();
+        Mockito.verifyNoMoreInteractions(dependencia1,dependencia2,dependencia3);
+    }
+
+    @Test
+    public void validaAlgoritmoX2(){
+        Dependencia1 dependencia1 = Mockito.mock(Dependencia1.class);
+        Dependencia2 dependencia2 = Mockito.mock(Dependencia2.class);
+        Dependencia3 dependencia3 = Mockito.mock(Dependencia3.class);
+
+        AlgoritmoX algoritmoX=new AlgoritmoX(dependencia1,dependencia2,dependencia3);
+
+        algoritmoX.algoritmoACubrir(5, 7, "prueba");
+
+        Mockito.verify(dependencia2).print(5, "prueba");
+        Mockito.verify(dependencia3).recover();
+        Mockito.verifyNoMoreInteractions(dependencia1, dependencia2, dependencia3);
+    }
+
+    @Test
+    public void validaAlgoritmoX3(){
+        Dependencia1 dependencia1 = Mockito.mock(Dependencia1.class);
+        Dependencia2 dependencia2 = Mockito.mock(Dependencia2.class);
+        Dependencia3 dependencia3 = Mockito.mock(Dependencia3.class);
+        AlgoritmoX algoritmoX = new AlgoritmoX(dependencia1, dependencia2, dependencia3);
+
+        algoritmoX.algoritmoACubrir(5, 7, "prueba");
+
+        Mockito.verify(dependencia3).send(5,7);
+        Mockito.verify(dependencia3).recover();
+        Mockito.verifyNoMoreInteractions(dependencia1, dependencia2, dependencia3);
+    }
+
+
 }
